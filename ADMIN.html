@@ -1,19 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Embedded Web App</title>
+  <title>Admin Control Panel</title>
+
+  <!-- Mobile-first viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #000;
+    }
+
+    iframe {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      border: none;
+    }
+  </style>
 </head>
 <body>
-  <h1>Personnel Command Center</h1>
 
   <iframe
     src="https://script.google.com/macros/s/AKfycbzGR_eZJpJvDhIO7bqWiwufSuah7sUDU_a8jhLWw3WOiDK9PPFdt2377a1iFQ-jP6Yw/exec?page=admin"
-    width="100%"
-    height="800"
-    style="border:1px solid #ddd"
-    title="Google Apps Script Web App"
-  ></iframe>
+    allowfullscreen
+    referrerpolicy="no-referrer"
+    loading="eager">
+  </iframe>
 
 </body>
 </html>
