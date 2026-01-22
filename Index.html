@@ -2,13 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>RMFB9</title>
+  <title>RMFB9 | TACTICAL INTERFACE</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
   <style>
     :root {
       --footer-height: 60px;
-      --bg-color: #0f1115;
+      --army-green: #3a4d39;
+      --tactical-black: #121417;
+      --caution-amber: #ffb400;
+      --panel-border: #4a5d4a;
+      --shadow-3d: rgba(0, 0, 0, 0.8);
     }
 
     html, body {
@@ -17,110 +21,135 @@
       height: 100%;
       width: 100%;
       overflow: hidden;
-      background-color: var(--bg-color);
-      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      /* Subtle carbon fiber/digital camo texture */
+      background-color: var(--tactical-black);
+      background-image: 
+        linear-gradient(45deg, #161a1d 25%, transparent 25%), 
+        linear-gradient(-45deg, #161a1d 25%, transparent 25%), 
+        linear-gradient(45deg, transparent 75%, #161a1d 75%), 
+        linear-gradient(-45deg, transparent 75%, #161a1d 75%);
+      background-size: 4px 4px;
+      font-family: 'Consolas', 'Courier New', monospace; /* Monospaced for military feel */
     }
 
-    /* 📦 3D RECESSED CONTAINER FOR THE FORM */
+    /* 🛡️ MILITARY HARDWARE CASE */
     .app-container {
       position: absolute;
-      top: 15px;
-      left: 15px;
-      right: 15px;
-      bottom: calc(var(--footer-height) + 15px);
-      background: #1a1d23;
-      border-radius: 20px;
+      top: 20px;
+      left: 20px;
+      right: 20px;
+      bottom: calc(var(--footer-height) + 30px);
+      
+      /* Beveled Industrial Edge */
+      background: #1e2227;
+      border: 4px solid var(--panel-border);
+      border-radius: 4px; /* Sharper corners for military hardware */
+      
+      /* Advanced 3D Shadowing for "Heavy" look */
       box-shadow: 
-        inset 5px 5px 15px rgba(0,0,0,0.5), 
-        inset -2px -2px 10px rgba(255,255,255,0.05),
-        0 10px 30px rgba(0,0,0,0.3);
+        0 20px 50px var(--shadow-3d),
+        inset 2px 2px 0px rgba(255,255,255,0.05),
+        inset -2px -2px 0px rgba(0,0,0,0.5);
+      
       overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 🛰️ HUD HEADER PANEL */
+    .header-bar {
+      background: var(--army-green);
+      height: 30px;
+      display: flex;
+      align-items: center;
+      padding: 0 15px;
+      color: white;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      border-bottom: 2px solid rgba(0,0,0,0.3);
+      text-transform: uppercase;
+    }
+
+    .header-bar::before {
+      content: "● SECURE CONNECTION";
+      color: #00ff00;
+      margin-right: 15px;
+      animation: blink 2s infinite;
     }
 
     iframe {
+      flex-grow: 1;
       width: 100%;
-      height: 100%;
       border: none;
-      /* Softens the edge of the iframe inside the 3D box */
-      border-radius: 20px;
+      filter: brightness(0.9) contrast(1.1); /* Gritty tactical look */
     }
 
-    /* 🚨 MINIMAL 3D FLOATING FOOTER */
+    /* 🚨 TACTICAL FOOTER (Steel Plate Look) */
     .footer {
       position: fixed;
-      bottom: 15px;
+      bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
       width: 90%;
-      max-width: 500px;
-      height: 40px;
+      max-width: 650px;
+      height: 45px;
 
       display: flex;
       align-items: center;
       justify-content: center;
 
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.3px;
-      color: rgba(255, 255, 255, 0.9);
-      text-align: center;
-      padding: 0 20px;
-
-      /* 3D Glass Effect */
-      background: rgba(20, 20, 20, 0.8);
-      backdrop-filter: blur(12px);
-      border-radius: 50px;
+      font-size: 0.7rem;
+      font-weight: bold;
+      color: var(--caution-amber);
+      text-transform: uppercase;
+      letter-spacing: 1px;
       
-      /* Subtle 3D Edge & Shadow */
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 
-        0 10px 20px rgba(0,0,0,0.4),
-        inset 0 1px 1px rgba(255,255,255,0.2);
+      /* Metallic Texture */
+      background: linear-gradient(180deg, #2a2e35 0%, #121417 100%);
+      border: 2px solid #333;
+      border-top: 2px solid var(--caution-amber);
+      clip-path: polygon(5% 0, 95% 0, 100% 100%, 0% 100%); /* Angular military shape */
       
-      z-index: 9999;
-      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      z-index: 10000;
     }
 
-    /* 🚓 SUBTLE SIREN GLOW (Less distracting) */
-    .footer::before {
+    /* 🔦 CORNER "BRACKET" ACCENTS */
+    .app-container::after {
       content: "";
       position: absolute;
-      inset: 0;
-      border-radius: 50px;
-      padding: 2px; /* Border thickness */
-      background: linear-gradient(90deg, #ff3b3b, #3b82f6);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      mask-composite: exclude;
-      animation: rotate-siren 3s linear infinite;
-      opacity: 0.6;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      background: 
+        linear-gradient(to right, var(--caution-amber) 2px, transparent 2px) 0 0,
+        linear-gradient(to bottom, var(--caution-amber) 2px, transparent 2px) 0 0,
+        linear-gradient(to left, var(--caution-amber) 2px, transparent 2px) 100% 0,
+        linear-gradient(to bottom, var(--caution-amber) 2px, transparent 2px) 100% 0,
+        linear-gradient(to right, var(--caution-amber) 2px, transparent 2px) 0 100%,
+        linear-gradient(to top, var(--caution-amber) 2px, transparent 2px) 0 100%,
+        linear-gradient(to left, var(--caution-amber) 2px, transparent 2px) 100% 100%,
+        linear-gradient(to top, var(--caution-amber) 2px, transparent 2px) 100% 100%;
+      background-repeat: no-repeat;
+      background-size: 15px 15px;
+      opacity: 0.4;
     }
 
-    @keyframes rotate-siren {
-      0% { filter: hue-rotate(0deg); opacity: 0.5; }
-      50% { opacity: 1; scale: 1.01; }
-      100% { filter: hue-rotate(360deg); opacity: 0.5; }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
     }
 
-    /* 📱 MOBILE ADJUSTMENTS */
+    /* 📱 MOBILE OPTIMIZATION */
     @media (max-width: 600px) {
-      .app-container {
-        top: 10px;
-        left: 10px;
-        right: 10px;
-        bottom: 75px;
-      }
-      .footer {
-        font-size: 0.65rem;
-        width: 85%;
-        bottom: 20px;
-      }
+      .app-container { top: 10px; left: 10px; right: 10px; bottom: 85px; border-width: 2px; }
+      .footer { font-size: 0.55rem; width: 95%; height: 55px; padding: 5px; }
     }
   </style>
 </head>
 <body>
 
   <div class="app-container">
+    <div class="header-bar">RMFB9 TACTICAL DATA TERMINAL // V1.0.9</div>
     <iframe
       src="https://script.google.com/macros/s/AKfycbxUuWW-yySkxVWprj3vYyFp_AVBcgj9xK-_SBvyzmbGOAUtIzJDmUgB5AnHsGoU10Gk/exec"
       allowfullscreen
