@@ -89,26 +89,32 @@
       position: fixed;
       bottom: 20px;
       left: 50%;
-      transform: translateX(-50%);
+      transform: translateX(-50%); /* Centers the footer container itself */
+      
       width: 90%;
       max-width: 650px;
       height: 45px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
+    
+      /* --- THE CENTERING ENGINE --- */
+      display: flex;            /* Enables Flexbox */
+      align-items: center;      /* Vertical centering */
+      justify-content: center;   /* Horizontal centering */
+      text-align: center;       /* Ensures multi-line text wraps centered */
+      /* ---------------------------- */
+    
       font-size: 0.7rem;
       font-weight: bold;
       color: var(--caution-amber);
       text-transform: uppercase;
       letter-spacing: 1px;
+      padding: 0 40px;          /* Added padding to prevent text from hitting the slanted edges */
       
-      /* Metallic Texture */
       background: linear-gradient(180deg, #2a2e35 0%, #121417 100%);
       border: 2px solid #333;
       border-top: 2px solid var(--caution-amber);
-      clip-path: polygon(5% 0, 95% 0, 100% 100%, 0% 100%); /* Angular military shape */
+      
+      /* Angular military shape */
+      clip-path: polygon(5% 0, 95% 0, 100% 100%, 0% 100%); 
       
       box-shadow: 0 10px 30px rgba(0,0,0,0.6);
       z-index: 10000;
