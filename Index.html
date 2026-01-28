@@ -1,171 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>RMFB9 | TACTICAL INTERFACE</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta charset="UTF-8">
+  <title>RMFB9 | TACTICAL INTERFACE</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-  <style>
-    :root {
-      --footer-height: 60px;
-      --army-green: #3a4d39;
-      --tactical-black: #121417;
-      --caution-amber: #ffb400;
-      --panel-border: #4a5d4a;
-      --shadow-3d: rgba(0, 0, 0, 0.8);
-    }
+  <style>
+    :root {
+      --footer-height: 60px;
+      --army-green: #3a4d39;
+      --tactical-black: #121417;
+      --caution-amber: #ffb400;
+      --panel-border: #4a5d4a;
+      --shadow-3d: rgba(0, 0, 0, 0.8);
+    }
 
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      width: 100%;
-      overflow: hidden;
-      /* Subtle carbon fiber/digital camo texture */
-      background-color: var(--tactical-black);
-      background-image: 
-        linear-gradient(45deg, #161a1d 25%, transparent 25%), 
-        linear-gradient(-45deg, #161a1d 25%, transparent 25%), 
-        linear-gradient(45deg, transparent 75%, #161a1d 75%), 
-        linear-gradient(-45deg, transparent 75%, #161a1d 75%);
-      background-size: 4px 4px;
-      font-family: 'Consolas', 'Courier New', monospace; /* Monospaced for military feel */
-    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      /* Subtle carbon fiber/digital camo texture */
+      background-color: var(--tactical-black);
+      background-image: 
+        linear-gradient(45deg, #161a1d 25%, transparent 25%), 
+        linear-gradient(-45deg, #161a1d 25%, transparent 25%), 
+        linear-gradient(45deg, transparent 75%, #161a1d 75%), 
+        linear-gradient(-45deg, transparent 75%, #161a1d 75%);
+      background-size: 4px 4px;
+      font-family: 'Consolas', 'Courier New', monospace; /* Monospaced for military feel */
+    }
 
-    /* 🛡️ MILITARY HARDWARE CASE */
-    .app-container {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      right: 20px;
-      bottom: calc(var(--footer-height) + 30px);
-      
-      /* Beveled Industrial Edge */
-      background: #1e2227;
-      border: 4px solid var(--panel-border);
-      border-radius: 4px; /* Sharper corners for military hardware */
-      
-      /* Advanced 3D Shadowing for "Heavy" look */
-      box-shadow: 
-        0 20px 50px var(--shadow-3d),
-        inset 2px 2px 0px rgba(255,255,255,0.05),
-        inset -2px -2px 0px rgba(0,0,0,0.5);
-      
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
+    /* 🛡️ MILITARY HARDWARE CASE */
+    .app-container {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      right: 20px;
+      bottom: calc(var(--footer-height) + 30px);
+      
+      /* Beveled Industrial Edge */
+      background: #1e2227;
+      border: 4px solid var(--panel-border);
+      border-radius: 4px; /* Sharper corners for military hardware */
+      
+      /* Advanced 3D Shadowing for "Heavy" look */
+      box-shadow: 
+        0 20px 50px var(--shadow-3d),
+        inset 2px 2px 0px rgba(255,255,255,0.05),
+        inset -2px -2px 0px rgba(0,0,0,0.5);
+      
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
 
-    /* 🛰️ HUD HEADER PANEL */
-    .header-bar {
-      background: var(--army-green);
-      height: 30px;
-      display: flex;
-      align-items: center;
-      padding: 0 15px;
-      color: white;
-      font-size: 0.7rem;
-      letter-spacing: 2px;
-      border-bottom: 2px solid rgba(0,0,0,0.3);
-      text-transform: uppercase;
-    }
+    /* 🛰️ HUD HEADER PANEL */
+    .header-bar {
+      background: var(--army-green);
+      height: 30px;
+      display: flex;
+      align-items: center;
+      padding: 0 15px;
+      color: white;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      border-bottom: 2px solid rgba(0,0,0,0.3);
+      text-transform: uppercase;
+    }
 
-    .header-bar::before {
-      content: "● SECURE CONNECTION";
-      color: #00ff00;
-      margin-right: 15px;
-      animation: blink 2s infinite;
-    }
+    .header-bar::before {
+      content: "● SECURE CONNECTION";
+      color: #00ff00;
+      margin-right: 15px;
+      animation: blink 2s infinite;
+    }
 
-    iframe {
-      flex-grow: 1;
-      width: 100%;
-      border: none;
-      filter: brightness(0.9) contrast(1.1); /* Gritty tactical look */
-    }
+    iframe {
+      flex-grow: 1;
+      width: 100%;
+      border: none;
+      filter: brightness(0.9) contrast(1.1); /* Gritty tactical look */
+    }
 
-    /* 🚨 TACTICAL FOOTER (Steel Plate Look) */
-    .footer {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%); /* Centers the footer container itself */
-      
-      width: 90%;
-      max-width: 650px;
-      height: 45px;
-    
-      /* --- THE CENTERING ENGINE --- */
-      display: flex;            /* Enables Flexbox */
-      align-items: center;      /* Vertical centering */
-      justify-content: center;   /* Horizontal centering */
-      text-align: center;       /* Ensures multi-line text wraps centered */
-      /* ---------------------------- */
-    
-      font-size: 0.7rem;
-      font-weight: bold;
-      color: var(--caution-amber);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      padding: 0 40px;          /* Added padding to prevent text from hitting the slanted edges */
-      
-      background: linear-gradient(180deg, #2a2e35 0%, #121417 100%);
-      border: 2px solid #333;
-      border-top: 2px solid var(--caution-amber);
-      
-      /* Angular military shape */
-      clip-path: polygon(5% 0, 95% 0, 100% 100%, 0% 100%); 
-      
-      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-      z-index: 10000;
-    }
+    /* 🚨 TACTICAL FOOTER (Steel Plate Look) */
+    .footer {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%); /* Centers the footer container itself */
+      
+      width: 90%;
+      max-width: 650px;
+      height: 45px;
+    
+      /* --- THE CENTERING ENGINE --- */
+      display: flex;            /* Enables Flexbox */
+      align-items: center;      /* Vertical centering */
+      justify-content: center;   /* Horizontal centering */
+      text-align: center;       /* Ensures multi-line text wraps centered */
+      /* ---------------------------- */
+    
+      font-size: 0.7rem;
+      font-weight: bold;
+      color: var(--caution-amber);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 0 40px;          /* Added padding to prevent text from hitting the slanted edges */
+      
+      background: linear-gradient(180deg, #2a2e35 0%, #121417 100%);
+      border: 2px solid #333;
+      border-top: 2px solid var(--caution-amber);
+      
+      /* Angular military shape */
+      clip-path: polygon(5% 0, 95% 0, 100% 100%, 0% 100%); 
+      
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      z-index: 10000;
+    }
 
-    /* 🔦 CORNER "BRACKET" ACCENTS */
-    .app-container::after {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      pointer-events: none;
-      background: 
-        linear-gradient(to right, var(--caution-amber) 2px, transparent 2px) 0 0,
-        linear-gradient(to bottom, var(--caution-amber) 2px, transparent 2px) 0 0,
-        linear-gradient(to left, var(--caution-amber) 2px, transparent 2px) 100% 0,
-        linear-gradient(to bottom, var(--caution-amber) 2px, transparent 2px) 100% 0,
-        linear-gradient(to right, var(--caution-amber) 2px, transparent 2px) 0 100%,
-        linear-gradient(to top, var(--caution-amber) 2px, transparent 2px) 0 100%,
-        linear-gradient(to left, var(--caution-amber) 2px, transparent 2px) 100% 100%,
-        linear-gradient(to top, var(--caution-amber) 2px, transparent 2px) 100% 100%;
-      background-repeat: no-repeat;
-      background-size: 15px 15px;
-      opacity: 0.4;
-    }
+    /* 🔦 CORNER "BRACKET" ACCENTS */
+    .app-container::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      background: 
+        linear-gradient(to right, var(--caution-amber) 2px, transparent 2px) 0 0,
+        linear-gradient(to bottom, var(--caution-amber) 2px, transparent 2px) 0 0,
+        linear-gradient(to left, var(--caution-amber) 2px, transparent 2px) 100% 0,
+        linear-gradient(to bottom, var(--caution-amber) 2px, transparent 2px) 100% 0,
+        linear-gradient(to right, var(--caution-amber) 2px, transparent 2px) 0 100%,
+        linear-gradient(to top, var(--caution-amber) 2px, transparent 2px) 0 100%,
+        linear-gradient(to left, var(--caution-amber) 2px, transparent 2px) 100% 100%,
+        linear-gradient(to top, var(--caution-amber) 2px, transparent 2px) 100% 100%;
+      background-repeat: no-repeat;
+      background-size: 15px 15px;
+      opacity: 0.4;
+    }
 
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
 
-    /* 📱 MOBILE OPTIMIZATION */
-    @media (max-width: 600px) {
-      .app-container { top: 10px; left: 10px; right: 10px; bottom: 85px; border-width: 2px; }
-      .footer { font-size: 0.55rem; width: 95%; height: 55px; padding: 5px; }
-    }
-  </style>
+    /* 📱 MOBILE OPTIMIZATION */
+    @media (max-width: 600px) {
+      .app-container { top: 10px; left: 10px; right: 10px; bottom: 85px; border-width: 2px; }
+      .footer { font-size: 0.55rem; width: 95%; height: 55px; padding: 5px; }
+    }
+  </style>
 </head>
 <body>
 
-  <div class="app-container">
-    <div class="header-bar">RMFB9 TACTICAL DATA TERMINAL // V1.0.9</div>
-    <iframe
-      src="https://script.google.com/macros/s/AKfycbxUuWW-yySkxVWprj3vYyFp_AVBcgj9xK-_SBvyzmbGOAUtIzJDmUgB5AnHsGoU10Gk/exec"
-      allowfullscreen
-      loading="lazy">
-    </iframe>
-  </div>
+  <div class="app-container">
+    <div class="header-bar">RMFB9 TACTICAL DATA TERMINAL // V1.0.9</div>
+    <iframe
+      src="https://script.google.com/macros/s/AKfycbxUuWW-yySkxVWprj3vYyFp_AVBcgj9xK-_SBvyzmbGOAUtIzJDmUgB5AnHsGoU10Gk/exec"
+      allowfullscreen
+      loading="lazy">
+    </iframe>
+  </div>
 
-  <footer class="footer">
-    “Bagong PNP para sa Bagong Pilipinas: Serbisyong Mabilis, Tapat, at Nararamdaman"
-  </footer>
+  <footer class="footer">
+    “Bagong PNP para sa Bagong Pilipinas: Serbisyong Mabilis, Tapat, at Nararamdaman"
+  </footer>
 
 </body>
 </html>
