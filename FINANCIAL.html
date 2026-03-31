@@ -1,87 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Sheets Dashboard</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="icon" type="image/png" href="seal-image-removebg-preview.png">
+<title>Command Center</title>
 
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-            font-family: sans-serif;
-        }
+<!-- ✅ LOGO ICON -->
+<link rel="icon" type="image/png" href="image-removebg-preview.png">
+<link rel="apple-touch-icon" href="image-removebg-preview.png">
 
-        /* 2. OPENING ANIMATION / LOADING SCREEN */
-        #loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease, visibility 0.5s;
-        }
+<style>
+  html, body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background: #050816;
+  }
 
-        #loader img {
-            width: 150px; /* Adjust size of your seal */
-            animation: pulse 2s infinite ease-in-out;
-        }
+  /* 🔥 SPLASH SCREEN */
+  #splash {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: radial-gradient(circle, #0a0f1c, #050816);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 9999;
+    animation: fadeOut 1s ease 3s forwards;
+  }
 
-        @keyframes pulse {
-            0% { transform: scale(0.95); opacity: 0.8; }
-            50% { transform: scale(1.05); opacity: 1; }
-            100% { transform: scale(0.95); opacity: 0.8; }
-        }
+  #splash img {
+    width: 130px;
+    animation: zoomIn 1.5s ease;
+    filter: drop-shadow(0 0 15px #00aaff);
+  }
 
-        .loader-text {
-            margin-top: 20px;
-            color: #555;
-            letter-spacing: 2px;
-            font-size: 14px;
-            text-transform: uppercase;
-        }
+  #splash h1 {
+    margin-top: 15px;
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: #ffffffcc;
+  }
 
-        /* IFRAME STYLING */
-        iframe {
-            border: none;
-            width: 100%;
-            height: 100vh;
-        }
-    </style>
+  @keyframes zoomIn {
+    from { transform: scale(0.5); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  @keyframes fadeOut {
+    to { opacity: 0; visibility: hidden; }
+  }
+
+  /* 📊 MAIN CONTENT */
+  #main {
+    display: none;
+    height: 100vh;
+    width: 100%;
+  }
+
+  iframe {
+    width: 100%;
+    height: 100vh;
+    border: none;
+  }
+</style>
 </head>
+
 <body>
 
-    <div id="loader">
-        <img src="seal-image-removebg-preview.png" alt="Seal Logo">
-        <div class="loader-text">Loading Dashboard...</div>
-    </div>
+<!-- 🔥 OPENING ANIMATION -->
+<div id="splash">
+  <img src="image-removebg-preview.png" alt="Seal Logo">
+  <h1>COMMAND CENTER</h1>
+</div>
 
-    <iframe 
-        id="sheetIframe"
-        src="https://docs.google.com/spreadsheets/d/1vRT7kJ8zE_22pkeN-4RG0dxCXYWxiLp_XFlz2wczwQY/htmlembed?gid=0&single=true&widget=true&headers=false"
-        onload="hideLoader()">
-    </iframe>
+<!-- 📊 YOUR ORIGINAL IFRAME (AUTO-FIT) -->
+<div id="main">
+  <iframe 
+    src="https://docs.google.com/spreadsheets/d/1vRT7kJ8zE_22pkeN-4RG0dxCXYWxiLp_XFlz2wczwQY/htmlembed?gid=0&single=true&widget=true&headers=false"
+    frameborder="0">
+  </iframe>
+</div>
 
-    <script>
-        function hideLoader() {
-            const loader = document.getElementById('loader');
-            // Small delay to ensure smooth transition
-            setTimeout(() => {
-                loader.style.opacity = '0';
-                loader.style.visibility = 'hidden';
-            }, 1000);
-        }
-    </script>
+<script>
+  // ⏱ Show iframe after splash
+  setTimeout(() => {
+    document.getElementById("main").style.display = "block";
+  }, 3000);
+</script>
 
 </body>
 </html>
