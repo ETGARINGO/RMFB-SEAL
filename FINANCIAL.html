@@ -2,95 +2,134 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>COMMAND CENTER</title>
+
+<!-- ✅ ICON -->
+<link rel="icon" type="image/png" href="image-removebg-preview.png">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Command Center</title>
-
-<!-- ✅ LOGO ICON -->
-<link rel="icon" type="image/png" href="image-removebg-preview.png">
-<link rel="apple-touch-icon" href="image-removebg-preview.png">
-
 <style>
-  html, body {
+  * {
     margin: 0;
-    height: 100%;
-    overflow: hidden;
-    font-family: Arial, sans-serif;
-    background: #050816;
+    padding: 0;
+    box-sizing: border-box;
   }
 
-  /* 🔥 SPLASH SCREEN */
+  body {
+    font-family: Arial, sans-serif;
+    background: #050816;
+    overflow: hidden;
+    color: white;
+  }
+
+  /* ⚡ LIGHTNING BACKGROUND */
+  body::before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(0,150,255,0.2), transparent);
+    animation: lightningFlash 5s infinite;
+    pointer-events: none;
+  }
+
+  @keyframes lightningFlash {
+    0%, 95%, 100% { opacity: 0; }
+    96% { opacity: 1; }
+    97% { opacity: 0.2; }
+    98% { opacity: 1; }
+    99% { opacity: 0; }
+  }
+
+  /* 🔥 SPLASH */
   #splash {
     position: fixed;
     width: 100%;
     height: 100vh;
     background: radial-gradient(circle, #0a0f1c, #050816);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
     z-index: 9999;
-    animation: fadeOut 1s ease 3s forwards;
+    animation: fadeOut 1s ease 3.5s forwards;
   }
 
   #splash img {
-    width: 130px;
-    animation: zoomIn 1.5s ease;
+    width: 140px;
+    animation: zoomGlow 2s ease;
     filter: drop-shadow(0 0 15px #00aaff);
   }
 
   #splash h1 {
     margin-top: 15px;
-    font-size: 20px;
-    letter-spacing: 2px;
-    color: #ffffffcc;
+    letter-spacing: 3px;
+    font-size: 22px;
+    opacity: 0.8;
   }
 
-  @keyframes zoomIn {
-    from { transform: scale(0.5); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+  @keyframes zoomGlow {
+    0% { transform: scale(0.5); opacity: 0; }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
   }
 
   @keyframes fadeOut {
     to { opacity: 0; visibility: hidden; }
   }
 
-  /* 📊 MAIN CONTENT */
+  /* 📊 MAIN */
   #main {
     display: none;
-    height: 100vh;
     width: 100%;
+    height: 100vh;
+    animation: fadeIn 1s ease forwards;
   }
 
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* 📱 AUTO FIT IFRAME */
   iframe {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     border: none;
   }
+
 </style>
 </head>
 
 <body>
 
-<!-- 🔥 OPENING ANIMATION -->
+<!-- ⚡ SPLASH -->
 <div id="splash">
-  <img src="image-removebg-preview.png" alt="Seal Logo">
+  <img src="image-removebg-preview.png">
   <h1>COMMAND CENTER</h1>
 </div>
 
-<!-- 📊 YOUR ORIGINAL IFRAME (AUTO-FIT) -->
+<!-- 📊 MAIN CONTENT -->
 <div id="main">
   <iframe 
-    src="https://docs.google.com/spreadsheets/d/1vRT7kJ8zE_22pkeN-4RG0dxCXYWxiLp_XFlz2wczwQY/htmlembed?gid=0&single=true&widget=true&headers=false"
-    frameborder="0">
+    src="https://docs.google.com/spreadsheets/d/1vRT7kJ8zE_22pkeN-4RG0dxCXYWxiLp_XFlz2wczwQY/htmlembed?gid=0&single=true&widget=true&headers=false">
   </iframe>
 </div>
 
 <script>
-  // ⏱ Show iframe after splash
+  // ⏱ AUTO SHOW MAIN
   setTimeout(() => {
     document.getElementById("main").style.display = "block";
-  }, 3000);
+  }, 3500);
+
+  // ⚡ RANDOM LIGHTNING FLASH BOOST
+  setInterval(() => {
+    document.body.style.filter = "brightness(1.4)";
+    setTimeout(() => {
+      document.body.style.filter = "brightness(1)";
+    }, 100);
+  }, 6000);
 </script>
 
 </body>
